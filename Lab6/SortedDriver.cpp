@@ -1,7 +1,8 @@
-﻿// SortedDriver.cpp : Defines the entry point for the console application.
+// William Kirkpatrick
+// SortedDriver.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+
 
 // SortedDriver.cpp
 
@@ -65,42 +66,80 @@ getWords(size_t numWords, size_t wordLength, string alphabet)
 // post: The most isolated entry in number has been returned
 double
 mostIsolated(vector<double> & number)
+
 {
+
 	double difference, isolated, difference2;
+
 	// STUB  STUB  STUB
-	
+
+
+
 	for (int i = 0; i < number.size(); i++) {
 
 
+
+
+
 		if (i == 0) {
+
 			isolated = number.at(i);
+
 			difference = number.at(i + 1) - number.at(i);
+
 		}
+
 		else if (i == number.size() - 1) {
+
 			if (difference < number.at(i) - number.at(i - 1)) {
+
 				isolated = number.at(i);
+
 				difference = number.at(i) - number.at(i - 1);
+
 			}
+
 		}
+
 		else {
 
-			if (number.at(i + 1) - number.at(i) > number.at(i) - number.at(i - 1)) {
+
+
+			if (number.at(i) - number.at(i - 1) <  number.at(i + 1) - number.at(i)) {
+
+				difference2 = number.at(i) - number.at(i - 1);
+
+
+
+
+
+			}
+
+			else {
+
 				difference2 = number.at(i + 1) - number.at(i);
+
+			}
+
+			if (difference2 > difference) {
+
+				difference = difference2;
+				isolated = number.at(i);
+
 				
 
 			}
-			else {
-				difference2 = number.at(i) - number.at(i - 1);
-			}
-			if (difference2 > difference) {
-				isolated = number.at(i);
-				difference = difference2;
-			}
+
 		}
 
+
+
 	}
-	
+
+
+
 	return isolated;
+
 }
 
 
@@ -110,8 +149,24 @@ mostIsolated(vector<double> & number)
 int
 unmatched(list<string> & A, list<string> & B)
 {
-	// STUB  STUB  STUB
-	return -1;
+	int sum = 0;
+	for (std::list<string>::iterator it = A.begin(), it1 = B.begin(); it != A.end() && it1 != B.end();) {
+		if (*it > *it1) {
+			it1++;
+		}
+		if (*it1 > *it) {
+			it++;
+		}
+		if (*it1 == *it) {
+			sum++;
+			it++;
+			
+		}
+
+		
+	}
+	 
+	return A.size() - sum;
 }
 
 
